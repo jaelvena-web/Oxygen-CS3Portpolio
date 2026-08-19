@@ -35,6 +35,13 @@ class Product:
         else:
            print("Not enough stock to remove.")
 
+        def show_all_products(self):
+            if not self.products:
+                print("No products available.")
+                return
+            print("---Products List---")
+            
+
 product1 = Product("Lucky Me Pancit Canton", 15, 20)
 product1.display_info()
 product2 = Product("Coca Cola", 20, 10)
@@ -57,3 +64,11 @@ print("---Restocking 10 items--")
 product1.restock(10)
 print("---After Restocking---")
 product1.display_info()
+
+print("Before removing")
+product1.display_info()
+print("Removing 5 items")
+product1.remove(5)
+print("Removing 50 items")
+product1.remove(50)
+
