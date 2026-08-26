@@ -88,3 +88,34 @@ product1.display_info()
 
 
 show_all_products(products)
+
+# Product list
+products = {
+    "lucky me pancit canton": {"price": 15, "qty": 17},
+    "coca-cola": {"price": 25, "qty": 27},
+    "skyflakes": {"price": 10, "qty": 50},
+    "piattos": {"price": 25, "qty": 13},
+    "sardines": {"price": 30, "qty": 22}
+}
+
+# 1. Display Products
+print("--- PRODUCT LIST ---")
+print("No. Name                       Price   Quantity")
+i = 1
+for name, info in products.items():
+    print(f"{i:<4}{name.title():<27} ₱{info['price']:<7}{info['qty']}")
+    i += 1
+
+# 2. Search Product
+search = input("\nSearch product: ").lower()
+if search in products:
+    print(f"Found: {search.title()} | Price: ₱{products[search]['price']} | Qty: {products[search]['qty']}")
+else:
+    print("Product not found.")
+
+# 3. Update Price
+item = input("\nEnter product to update price: ").lower()
+if item in products:
+    print(f"Old price: ₱{products[item]['price']}")
+    products[item]['price'] = int(input("New price: ₱"))
+    print("Price updated!")
