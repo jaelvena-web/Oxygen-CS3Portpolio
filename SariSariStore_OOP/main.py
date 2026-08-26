@@ -5,70 +5,86 @@ class Product:
         self.quantity = quantity
 
     def display_info(self):
-        print("Product:", self.name)
-        print("Price: P", self.price)
-        print("Quantity:", self.quantity)
+        print(f"Product: {self.name}")
+        print(f"Price: P{self.price}")
+        print(f"Quantity: {self.quantity}")
 
     def sell(self, quantity):
-        if quantity <= self.quantity:
+        if quantity <= 0:
+            print("Quantity sold must be greater than 0.")
+        elif quantity <= self.quantity:
             self.quantity -= quantity
-            print(quantity, self.name, "sold.")
+            print(f"{quantity} {self.name}(s) sold.")
+            print(f"Remaining quantity: {self.quantity}")
         else:
-            print("Not enough stock.")
+            print(f"Not enough stock to sell {quantity} {self.name}(s).")
 
     def restock(self, amount):
         if amount <= 0:
             print("Amount must be greater than 0.")
         else:
             self.quantity += amount
-            print(amount, self.name, "restocked.")
-            print("New quantity:", self.quantity)
+            print(f"{amount} {self.name}(s) restocked.")
+            print(f"New quantity: {self.quantity}")
 
     def remove(self, amount):
         if amount <= 0:
             print("Amount must be greater than 0.")
         elif amount <= self.quantity:
             self.quantity -= amount
-            print(amount, self.name, "removed.")
-            print("New quantity:", self.quantity)
-
+            print(f"{amount} {self.name}(s) removed.")
+            print(f"New quantity: {self.quantity}")
         else:
-           print("Not enough stock to remove.")
+            print(f"Not enough stock to remove {amount} {self.name}(s).")
 
-        def show_all_products(self):
-            if not self.products:
-                print("No products available.")
-                return
-            print("---Products List---")
-            
+
+
+
+def show_all_products(products_list):
+    if not products_list:
+        print("No products available.")
+        return
+    print("\n--- PRODUCT LIST ---")
+    print(f"{'No.':<4}{'Product Name':<25}{'Price':<10}{'Quantity':<8}")
+    print("-" * 50)
+    for i, p in enumerate(products_list, 1):
+        print(f"{i:<4}{p.name:<25}P{p.price:<9}{p.quantity:<8}")
+
+
+def search_product(products_list, name):
+    for p in products_list:
+        if p.name.lower() == name.lower():
+            print(f"\nFound: {p.name} | Price: P{p.price} | Qty: {p.quantity}")
+            return p
+    print(f"\nProduct '{name}' not found.")
+    return None
+
+
 
 product1 = Product("Lucky Me Pancit Canton", 15, 20)
-product1.display_info()
 product2 = Product("Coca Cola", 20, 10)
-product2.display_info()
 product3 = Product("Skyflakes", 10, 30)
-product3.display_info()
 product4 = Product("Piattos", 25, 12)
-product4.display_info()
 product5 = Product("Sardines", 30, 10)
-product5.display_info()
 
-print("---Before Selling---")
-product1.display_info()
-print("Sell 3 Lucky Me Pancit Canton")
-product1.sell(3)
-print("---After Selling---")
+
+products = [product1, product2, product3, product4, product5]
+
+
+show_all_products(products)
+
+
+search_product(products, "Piattos")
+
+
+print("\n--- Product Operations ---")
+product1.restock(15)
+product3.remove(5)
+product4.sell(1)
+
+
+print("\n--- Updated Details ---")
 product1.display_info()
 
-print("---Restocking 10 items--")
-product1.restock(10)
-print("---After Restocking---")
-product1.display_info()
 
-print("Before removing")
-product1.display_info()
-print("Removing 5 items")
-product1.remove(5)
-print("Removing 50 items")
-product1.remove(50)
-
+show_all_products(products)
