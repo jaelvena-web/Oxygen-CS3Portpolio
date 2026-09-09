@@ -1,31 +1,21 @@
-name = input("What is your name: ")
-print("Hello, " + name + "!")
+class Dog:
+    def __init__(self, name, age):
+            self.name = name
+            self.age = age
 
-number1 = int(input("Enter number: "))
-if number1 > 0:
-    print("The number is positive.")
-elif number1 == 0:
-    print("The number is zero.")
-else:
-    print("The number is negative.")
+    def bark(self):
+        print("Woof! Woof!")
 
-    num1 = int(input("Enter first number: "))
-    num2 = int(input("Enter second number: "))
-    if num1 > num2:
-        print(num1)
-    elif num1 == num2:
-        print("The numbers are equal.")
-    else:
-        print(num2)
+    def display_info(self):
+        print(f"Name: {self.name}, Age: {self.age}")
 
-    score = int(input("Enter your score: "))
-    if score >= 75:
-        print("Passed")
-    else:
-        print("Failed")
 
-    number = int(input("Enter a number: "))
-    if number % 2 == 0:
-        print("The number is even.")
-    else:
-        print("The number is odd.")
+dog1 = Dog("Buddy", 3)
+dog2 = Dog("Max", 5)
+
+dog1.display_info()
+dog1.bark()
+
+dog2.display_info()
+dog2.bark()
+        

@@ -1,0 +1,7 @@
+school = School("Riverside High")
+s1 = Student("Ana")
+s2 = Student("Ben")
+school.add_student(s1)
+school.add_student(s2)
+s1.School(school)
+s2.School(school)
